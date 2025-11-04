@@ -21,7 +21,7 @@ public final class WebDriverSetup {
 
     private static final Logger log = LoggerFactory.getLogger(WebDriverSetup.class);
 
-    private WebDriverSetup() {}
+    public WebDriverSetup() {}
 
     @Step("Creating WebDrivera for browser: {0}")
     public static WebDriver createWebDriver() throws MalformedURLException {

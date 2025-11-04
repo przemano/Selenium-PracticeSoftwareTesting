@@ -9,6 +9,7 @@
         <junit.version>6.0.0</junit.version>
         <allure.version>2.29.1</allure.version>
         <aspectj.version>1.9.21</aspectj.version>
+        <parallel.runs>1</parallel.runs>
     </properties>
 
     <dependencyManagement>
@@ -59,7 +60,7 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
-            <version>1.10.0</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -114,8 +115,7 @@
                         <junit.jupiter.execution.parallel.enabled>true</junit.jupiter.execution.parallel.enabled>
                         <junit.jupiter.execution.parallel.mode.default>concurrent</junit.jupiter.execution.parallel.mode.default>
                         <junit.jupiter.execution.parallel.config.strategy>fixed</junit.jupiter.execution.parallel.config.strategy>
-                        <!--suppress UnresolvedMavenProperty -->
-                        <junit.jupiter.execution.parallel.config.fixed.parallelism>${env.PARALLEL_RUNS:1}</junit.jupiter.execution.parallel.config.fixed.parallelism>
+                        <junit.jupiter.execution.parallel.config.fixed.parallelism>${parallel.runs}</junit.jupiter.execution.parallel.config.fixed.parallelism>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
