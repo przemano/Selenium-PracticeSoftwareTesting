@@ -1,13 +1,11 @@
 package com.github.przemano.devtools;
 
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Disabled;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.bidi.HasBiDi;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class DevToolsViaBiDi implements DevToolsHandler{
+public class DevToolsViaBiDi implements DevToolsExecutor {
 
     WebDriver driver;
     HasBiDi bidiDriver;

@@ -1,6 +1,5 @@
 package com.github.przemano.devtools;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v142.emulation.Emulation;
@@ -8,7 +7,7 @@ import org.openqa.selenium.devtools.DevTools;
 
 import java.util.Optional;
 
-public class DevToolsViaSend implements DevToolsHandler {
+public class DevToolsViaSend implements DevToolsExecutor {
 
     private HasDevTools driver;
     private DevTools devTools;

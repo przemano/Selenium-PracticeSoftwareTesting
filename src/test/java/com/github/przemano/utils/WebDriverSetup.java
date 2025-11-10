@@ -26,7 +26,7 @@ public final class WebDriverSetup {
     @Step("Creating WebDrivera for browser: {0}")
     public static WebDriver createWebDriver() throws MalformedURLException {
         //String browser = getEnvOrDefault("BROWSER", "chrome").toLowerCase();
-        String browser = getEnvOrDefault("BROWSER", "chrome");//.toLowerCase();
+        String browser = getEnvOrDefault("BROWSER", "MicrosoftEdge");//.toLowerCase();
         boolean isRemote = Boolean.parseBoolean(getEnvOrDefault("REMOTE", "false"));
         boolean headless = Boolean.parseBoolean(getEnvOrDefault("HEADLESS", "false"));
 

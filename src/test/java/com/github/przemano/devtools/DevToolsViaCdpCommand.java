@@ -1,15 +1,12 @@
 package com.github.przemano.devtools;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chromium.ChromiumDriver;
-import org.openqa.selenium.devtools.HasDevTools;
-import org.openqa.selenium.edge.EdgeDriver;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DevToolsViaCdpCommand implements DevToolsHandler{
+public class DevToolsViaCdpCommand implements DevToolsExecutor {
 
     ChromiumDriver driver;
 

@@ -5,7 +5,6 @@ import com.github.przemano.devtools.*;
 import com.github.przemano.utils.WebDriverSetup;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 
 
@@ -16,12 +15,12 @@ import java.util.List;
 public class TestBase {
 
     protected static WebDriver driver;
-    protected static DevToolsHandler devTools;
+    protected static DevToolsExecutor devTools;
 
     @BeforeAll
     static void setup() throws MalformedURLException {
         driver = WebDriverSetup.createWebDriver();
-        devTools = DevToolsSetup.createDevTools(driver);
+        devTools = DevToolsExecutor.createDevTools(driver);
 
         devTools.emulationSetDeviceMetrics(600,1000, 50, true);
 
