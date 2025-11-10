@@ -25,7 +25,8 @@ public final class WebDriverSetup {
 
     @Step("Creating WebDrivera for browser: {0}")
     public static WebDriver createWebDriver() throws MalformedURLException {
-        String browser = getEnvOrDefault("BROWSER", "chrome").toLowerCase();
+        //String browser = getEnvOrDefault("BROWSER", "chrome").toLowerCase();
+        String browser = getEnvOrDefault("BROWSER", "chrome");//.toLowerCase();
         boolean isRemote = Boolean.parseBoolean(getEnvOrDefault("REMOTE", "false"));
         boolean headless = Boolean.parseBoolean(getEnvOrDefault("HEADLESS", "false"));
 
@@ -45,7 +46,7 @@ public final class WebDriverSetup {
         return switch (browser) {
             case "chrome" -> new ChromeDriver(createChromeOptions(headless));
             case "firefox" -> new FirefoxDriver(createFirefoxOptions(headless));
-            case "edge" -> new EdgeDriver(createEdgeOptions(headless));
+            case "MicrosoftEdge" -> new EdgeDriver(createEdgeOptions(headless));
             default -> throw new IllegalArgumentException("Unsupported browser: " + browser);
         };
     }
