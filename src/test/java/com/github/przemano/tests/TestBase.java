@@ -5,12 +5,10 @@ import com.github.przemano.devtools.*;
 import com.github.przemano.utils.WebDriverSetup;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
-
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class TestBase {
 
@@ -19,10 +17,13 @@ public class TestBase {
 
     @BeforeAll
     static void setup() throws MalformedURLException {
+        String browser;
         driver = WebDriverSetup.createWebDriver();
         devTools = DevToolsExecutor.createDevTools(driver);
 
-        devTools.emulationSetDeviceMetrics(600,1000, 50, true);
+        //devTools.emulationSetDeviceMetrics(Config.Mobile.Width,Config.Mobile.Height, Config.Mobile.Scale, Config.Mobile.IsMobile);
+        devTools.setMobileView();
+        devTools.setMyTownLocation();
 
         driver.get(Config.URL.BaseURL);
         try {
@@ -37,5 +38,4 @@ public class TestBase {
         driver.quit();
     }
 
-    List<String> test = new ArrayList<>();
 }

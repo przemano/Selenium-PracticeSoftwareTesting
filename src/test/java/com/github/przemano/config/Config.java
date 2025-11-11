@@ -1,5 +1,7 @@
 package com.github.przemano.config;
 
+import java.util.Map;
+
 public class Config {
 
 
@@ -22,4 +24,20 @@ public class Config {
                 public static final String SeleniumGrid = System.getenv("SELENIUM_GRID_URL") == null ? SeleniumGridDefault : System.getenv("SELENIUM_GRID_URL");
 
         }
+        public static class DevTools {
+                public static class Mobile {
+                        public static final int Width = 600;
+                        public static final int Height = 1000;
+                        public static final int Scale = 50;
+                        public static final boolean IsMobile = true;
+                }
+                public static class Location {
+
+                        public static final double Latitude = 50.4471152;
+                        public static final double Longitude =18.8488764;
+                        public static final int Accuracy = 1;
+
+                }
+        }
+
 }

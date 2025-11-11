@@ -21,12 +21,21 @@ public final class WebDriverSetup {
 
     private static final Logger log = LoggerFactory.getLogger(WebDriverSetup.class);
 
+    public static final String BROWSER_CHROME = "chrome";
+    public static final String BROWSER_EDGE = "MicrosoftEdge";
+    public static final String BROWSER_FIREFOX = "firefox";
+
     public WebDriverSetup() {}
 
-    @Step("Creating WebDrivera for browser: {0}")
     public static WebDriver createWebDriver() throws MalformedURLException {
+        String browser = getEnvOrDefault("BROWSER", BROWSER_CHROME);//.toLowerCase();
+        return createWebDriver(browser);
+    }
+
+    @Step("Creating WebDrivera for browser: {0}")
+    public static WebDriver createWebDriver(String browser) throws MalformedURLException {
         //String browser = getEnvOrDefault("BROWSER", "chrome").toLowerCase();
-        String browser = getEnvOrDefault("BROWSER", "MicrosoftEdge");//.toLowerCase();
+        //String browser = getEnvOrDefault("BROWSER", browsera);//.toLowerCase();
         boolean isRemote = Boolean.parseBoolean(getEnvOrDefault("REMOTE", "false"));
         boolean headless = Boolean.parseBoolean(getEnvOrDefault("HEADLESS", "false"));
 
@@ -58,9 +67,7 @@ public final class WebDriverSetup {
         caps.setBrowserName(browser);
 
         log.info("[WebDriverSetup] Connecting to Selenium Grid at {}", gridUrl);
-
         return new RemoteWebDriver(URI.create(gridUrl).toURL(), caps);
-
     }
 
 
@@ -76,6 +83,7 @@ public final class WebDriverSetup {
         options.addArguments("--disable-dev-shm-usage");
         //options.setPageLoadStrategy(PageLoadStrategy.NONE);
         //options.addArguments("--disable-features=Translate,AutomationControlled");
+        //options.addArguments("--unsafely-treat-insecure-origin-as-secure=http://localhost:8080");
         options.addArguments("--window-size=1920,1080");
 
         if (useHeadless) {

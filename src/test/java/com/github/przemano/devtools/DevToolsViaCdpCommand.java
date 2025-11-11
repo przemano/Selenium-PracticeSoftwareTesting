@@ -25,4 +25,10 @@ public class DevToolsViaCdpCommand implements DevToolsExecutor {
 
         driver.executeCdpCommand("Emulation.setDeviceMetricsOverride",params);
     }
+
+    @Override
+    public void setGeoLocation(double latitude, double longitude, double accuracy) {
+        Map <String, Object> coordinates = Map.of("latitude", latitude, "longitude", longitude, "accuracy", accuracy );
+        driver.executeCdpCommand("Emulation.setGeolocationOverride", coordinates);
+    }
 }

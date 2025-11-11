@@ -5,6 +5,7 @@ import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v142.emulation.Emulation;
 import org.openqa.selenium.devtools.DevTools;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class DevToolsViaSend implements DevToolsExecutor {
@@ -39,5 +40,10 @@ public class DevToolsViaSend implements DevToolsExecutor {
     public void emulationSetDeviceMetrics(int width, int height, int scale, boolean mobile) {
 
         devTools.send(Emulation.setDeviceMetricsOverride(width, height, scale, mobile, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),Optional.empty()));
+    }
+
+    @Override
+    public void setGeoLocation(double latitude, double longitude, double accuracy) {
+        devTools.send(Emulation.setGeolocationOverride(Optional.of(latitude), Optional.of(longitude), Optional.of(accuracy), Optional.empty(),Optional.empty(),Optional.empty(),Optional.empty()));
     }
 }
