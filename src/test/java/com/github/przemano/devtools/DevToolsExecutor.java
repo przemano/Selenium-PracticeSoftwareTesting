@@ -1,12 +1,17 @@
 package com.github.przemano.devtools;
 
 import com.github.przemano.config.Config;
+import com.github.przemano.utils.WebDriverSetup;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v142.emulation.Emulation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface DevToolsExecutor {
+
+    public static final Logger logger = LoggerFactory.getLogger(DevToolsExecutor.class);
 
     public enum DevToolsMethod {AUTO, SEND, CDP, BIDI}
 
@@ -40,7 +45,7 @@ public interface DevToolsExecutor {
         }
 
         String browserName = hasCaps.getCapabilities().getBrowserName();
-        System.out.println("Running tests on browser: " + browserName);
+        logger.info("Running tests on browser: {}", browserName);
 
         return switch (browserName) {
             case "firefox" -> new DevToolsViaBiDi(driver);
@@ -50,8 +55,8 @@ public interface DevToolsExecutor {
                 devTools.createSession();
                 String cdpVersion = devTools.getDomains().toString().split("\\.")[4];
                 String emulationVersion = Emulation.class.getPackageName().split("\\.")[4];
-                System.out.println("Detected CDP version: " + cdpVersion);
-                System.out.println("DevTools Emulation version: " + emulationVersion);
+                logger.info("Detected CDP version: {}", cdpVersion);
+                logger.info("DevTools Emulation version: {}", emulationVersion);
 
                 if (!cdpVersion.equalsIgnoreCase(emulationVersion)) {
                     yield new DevToolsViaCdpCommand(driver);

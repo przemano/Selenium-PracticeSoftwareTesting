@@ -19,7 +19,7 @@ import java.net.URI;
 
 public final class WebDriverSetup {
 
-    private static final Logger log = LoggerFactory.getLogger(WebDriverSetup.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebDriverSetup.class);
 
     public static final String BROWSER_CHROME = "chrome";
     public static final String BROWSER_EDGE = "MicrosoftEdge";
@@ -39,9 +39,9 @@ public final class WebDriverSetup {
         boolean isRemote = Boolean.parseBoolean(getEnvOrDefault("REMOTE", "false"));
         boolean headless = Boolean.parseBoolean(getEnvOrDefault("HEADLESS", "false"));
 
-        log.info("[WebDriverSetup] Browser: {}", browser);
-        log.info("[WebDriverSetup] Remote mode: {}", isRemote);
-        log.info("[WebDriverSetup] Headless: {}", headless);
+        logger.info("[WebDriverSetup] Browser: {}", browser);
+        logger.info("[WebDriverSetup] Remote mode: {}", isRemote);
+        logger.info("[WebDriverSetup] Headless: {}", headless);
 
         if (isRemote) {
             return createRemoteWebDriver(browser, headless);
@@ -66,7 +66,7 @@ public final class WebDriverSetup {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setBrowserName(browser);
 
-        log.info("[WebDriverSetup] Connecting to Selenium Grid at {}", gridUrl);
+        logger.info("[WebDriverSetup] Connecting to Selenium Grid at {}", gridUrl);
         return new RemoteWebDriver(URI.create(gridUrl).toURL(), caps);
     }
 
@@ -88,9 +88,9 @@ public final class WebDriverSetup {
 
         if (useHeadless) {
             options.addArguments("--headless=new");
-            log.info("[WebDriverSetup] [Se✔] Chrome headless mode");
+            logger.info("Chrome headless mode");
         } else {
-            log.info("[WebDriverSetup] [Se✔] Chrome with UI (NoVNC / GUI) ");
+            logger.info("Chrome with UI (NoVNC / GUI) ");
         }
         return options;
     }
