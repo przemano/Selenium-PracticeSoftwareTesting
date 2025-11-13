@@ -29,7 +29,7 @@ public final class WebDriverSetup {
         return createWebDriver(browser);
     }
 
-    @Step("Creating WebDrivera for browser: {0}")
+    //@Step("Creating WebDrivera for browser: {0}")
     public static WebDriver createWebDriver(String browser) throws MalformedURLException {
         //String browser = getEnvOrDefault("BROWSER", "chrome").toLowerCase();
         //String browser = getEnvOrDefault("BROWSER", browsera);//.toLowerCase();
