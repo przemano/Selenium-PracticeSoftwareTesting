@@ -83,6 +83,9 @@ buildNumber.properties
 .idea/
 *.iml
 
+#GitHub
+.github/
+
 # ---> Java
 # Compiled class file
 *.class
