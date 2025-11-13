@@ -1,6 +1,7 @@
 package com.github.przemano.utils;
 
 import com.github.przemano.config.Config;
+import com.github.przemano.constants.BrowserName;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,14 +22,10 @@ public final class WebDriverSetup {
 
     private static final Logger logger = LoggerFactory.getLogger(WebDriverSetup.class);
 
-    public static final String BROWSER_CHROME = "chrome";
-    public static final String BROWSER_EDGE = "MicrosoftEdge";
-    public static final String BROWSER_FIREFOX = "firefox";
-
     public WebDriverSetup() {}
 
     public static WebDriver createWebDriver() throws MalformedURLException {
-        String browser = getEnvOrDefault("BROWSER", BROWSER_CHROME);//.toLowerCase();
+        String browser = getEnvOrDefault("BROWSER", Config.Browser.Default);//.toLowerCase();
         return createWebDriver(browser);
     }
 

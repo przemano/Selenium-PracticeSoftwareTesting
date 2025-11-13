@@ -7,7 +7,6 @@ import org.openqa.selenium.devtools.DevTools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
 import java.util.Optional;
 
 public class DevToolsViaSend implements DevToolsExecutor {
@@ -21,23 +20,9 @@ public class DevToolsViaSend implements DevToolsExecutor {
         this.driver = (HasDevTools) driver;
         this.devTools = this.driver.getDevTools();
         this.devTools.createSession();
-        verifyDevToolsVersion();
+
     }
 
-
-    private void verifyDevToolsVersion() {
-        String cdpVersion = devTools.getDomains().toString().split("\\.")[4];
-        String emulationVersion = Emulation.class.getPackageName().split("\\.")[4];
-        logger.info("Detected CDP version: {}", cdpVersion);
-        logger.info("DevTools Emulation version: {}", emulationVersion);
-
-        if (!cdpVersion.equalsIgnoreCase(emulationVersion)) {
-            throw new IllegalStateException(String.format(
-                    "CDP version  (%s) and DevTools Emulation version (%s) do not match.",
-                    cdpVersion, emulationVersion
-            ));
-        }
-    }
 
     @Override
     public void emulationSetDeviceMetrics(int width, int height, int scale, boolean mobile) {

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DevToolsViaCdpCommand implements DevToolsExecutor {
+public class DevToolsViaCdpCommand implements DevToolsExecutor{
     private static final Logger logger = LoggerFactory.getLogger(DevToolsViaCdpCommand.class);
 
     ChromiumDriver driver;

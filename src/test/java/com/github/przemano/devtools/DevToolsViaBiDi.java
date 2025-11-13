@@ -3,7 +3,6 @@ package com.github.przemano.devtools;
 import org.junit.jupiter.api.Disabled;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.bidi.BiDi;
 import org.openqa.selenium.bidi.HasBiDi;
 import org.openqa.selenium.bidi.emulation.Emulation;
 import org.openqa.selenium.bidi.emulation.GeolocationCoordinates;

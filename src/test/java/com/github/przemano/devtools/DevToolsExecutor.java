@@ -1,9 +1,10 @@
 package com.github.przemano.devtools;
 
 import com.github.przemano.config.Config;
-import com.github.przemano.utils.WebDriverSetup;
+import com.github.przemano.constants.BrowserName;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
 import org.openqa.selenium.devtools.v142.emulation.Emulation;
 import org.slf4j.Logger;
@@ -47,26 +48,38 @@ public interface DevToolsExecutor {
         String browserName = hasCaps.getCapabilities().getBrowserName();
         logger.info("Running tests on browser: {}", browserName);
 
+
         return switch (browserName) {
-            case "firefox" -> new DevToolsViaBiDi(driver);
-            case "chrome", "MicrosoftEdge", "opera" -> {
+            case BrowserName.FIREFOX -> new DevToolsViaBiDi(driver);
+            case BrowserName.CHROME, BrowserName.EDGE, BrowserName.OPERA -> {
                 var hasDevTools = (HasDevTools) driver;
                 var devTools = hasDevTools.getDevTools();
                 devTools.createSession();
-                String cdpVersion = devTools.getDomains().toString().split("\\.")[4];
-                String emulationVersion = Emulation.class.getPackageName().split("\\.")[4];
-                logger.info("Detected CDP version: {}", cdpVersion);
-                logger.info("DevTools Emulation version: {}", emulationVersion);
-
-                if (!cdpVersion.equalsIgnoreCase(emulationVersion)) {
-                    yield new DevToolsViaCdpCommand(driver);
-                } else {
+                if (isDevToolsVersionUpToDate(devTools)) {
                     yield new DevToolsViaSend(driver);
+                } else {
+                    yield new DevToolsViaCdpCommand(driver);
                 }
             }
             default -> throw new UnsupportedOperationException(
                     "Browser '" + browserName + "' not supported."
             );
         };
+    }
+
+
+    static boolean isDevToolsVersionUpToDate(DevTools devTools) {
+        String cdpVersion = devTools.getDomains().toString().split("\\.")[4];
+        String emulationVersion = Emulation.class.getPackageName().split("\\.")[4];
+        boolean isUpToDate = cdpVersion.equalsIgnoreCase(emulationVersion);
+        if(isUpToDate)
+        {
+            logger.info("DevTools version {} compatible. ", cdpVersion);
+        }
+        else {
+            logger.warn("DevTools version: {} not compatible with DevTools library version: {}", cdpVersion, emulationVersion );
+        }
+
+        return isUpToDate;
     }
 }
