@@ -26,15 +26,16 @@ public class TestBase {
         devTools = DevToolsExecutor.createDevTools(driver);
 
         //devTools.emulationSetDeviceMetrics(Config.Mobile.Width,Config.Mobile.Height, Config.Mobile.Scale, Config.Mobile.IsMobile);
-        devTools.setMobileView();
+
+        //devTools.setMobileView();
         devTools.setMyTownLocation();
 
         driver.get(Config.URL.BaseURL);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     @AfterAll

@@ -2,6 +2,7 @@ package com.github.przemano.config;
 
 import com.github.przemano.constants.BrowserName;
 
+import java.time.Duration;
 import java.util.Map;
 
 public class Config {
@@ -10,10 +11,11 @@ public class Config {
         /**
          * Timeout in seconds - page loading time and other actions for the wait object of the WebDriverWait class
          */
-        public static final long Timeout = 3;
+        //public static final long Timeout = 3;
 
         public static class Timeout {
                 public static final int PageToLoad = 30; //sec
+                public static final int AjaxPageToLoad = 5; //sec
         }
 
         public static class URL {
